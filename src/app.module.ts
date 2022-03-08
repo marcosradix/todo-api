@@ -11,11 +11,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'pk1l4ihepirw9fob.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+      host: process.env.Host,
       port: 3306,
-      username: 'y1hz3l3kwpaz9x6q',
-      password: "c027iaosieel0klw",
-      database: 'dxdlnr749vod2nt0',
+      username: process.env.Username,
+      password: process.env.Password,
+      database: process.env.Database,
       entities: [Todo],
       synchronize: true,
       autoLoadEntities: true,
