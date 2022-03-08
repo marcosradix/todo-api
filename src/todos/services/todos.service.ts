@@ -1,4 +1,3 @@
-import { Todo } from './../entities/todo';
 import { Injectable } from '@nestjs/common';
 import { TodoDto } from '../dtos/todo-dto';
 import { InjectRepository } from '@nestjs/typeorm';

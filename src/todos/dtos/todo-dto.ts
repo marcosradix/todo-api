@@ -1,3 +1,4 @@
+import { TaskDto } from './task-dto';
 
 export class TodoDto {
 
@@ -5,8 +6,8 @@ export class TodoDto {
   name: string;
   description: string;
   isDone: boolean;
-  createAt: Date;
+  createdAt: Date;
   updatedAt: Date;
-  
+  task: TaskDto;
 }
 
