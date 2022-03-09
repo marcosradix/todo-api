@@ -34,6 +34,11 @@ export class TodosController {
         return this.todosService.finById(id);
     }
 
+    @Get("/task/:id")
+    async findTaskById(@Param("id") id: number):Promise<TodoDto[]> {
+        return this.todosService.findAllTodosByTaskId(id);
+    }
+
     @Put("/:id")
     async changeStatus(@Param("id") id: number, @Body() status: boolean):Promise<TodoDto> {
         return this.todosService.changeStatus(id, status);

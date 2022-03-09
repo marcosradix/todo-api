@@ -6,23 +6,19 @@ import { TaskRepository } from '../repositories/taskRepository';
 @Injectable()
 export class TaskService {
 
-    constructor(
-        @InjectRepository(TaskRepository) private taskRepository: TaskRepository,
-      ) {}
+   constructor(
+      @InjectRepository(TaskRepository) private taskRepository: TaskRepository,
+   ) { }
 
-    createTask(taskDto: TaskDto) {
-       return this.taskRepository.createTask(taskDto);
-    }
+   createTask(taskDto: TaskDto) {
+      return this.taskRepository.createTask(taskDto);
+   }
 
-    listTasks() {
-        return this.taskRepository.findAll();
-     }
+   listTasks() {
+      return this.taskRepository.findAll();
+   }
 
-   //   finById(id: number) {
-   //      return this.todoRepository.findById(id);
-   //   }
-
-   //   changeStatus(id: number, status: boolean) {
-   //      return this.todoRepository.changeStatus(id, status["status"]);
-   //   }
+   finById(id: number) {
+      return this.taskRepository.findById(id);
+   }
 }

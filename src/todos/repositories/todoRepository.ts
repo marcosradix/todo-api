@@ -1,6 +1,6 @@
 import { TodoDto } from './../dtos/todo-dto';
 import { Todo } from './../entities/todo';
-import { Repository, EntityRepository } from 'typeorm';
+import { Repository, EntityRepository, getRepository } from 'typeorm';
 
 
 @EntityRepository(Todo)
@@ -11,6 +11,14 @@ export class TodoRepository extends Repository<Todo> {
 
     public async findById(todoId: number): Promise<Todo> {
         return await this.findOne(todoId);
+    }
+
+    public async findAllTodosByTaskId(taskId: number): Promise<TodoDto[]> {
+        return getRepository(Todo)
+            .createQueryBuilder("todo")
+            .innerJoin("todo.task", "task")
+            .where("task.id = :id", { id: taskId })
+            .getMany();
     }
 
     public async createTodo(todoDto: TodoDto): Promise<Todo> {

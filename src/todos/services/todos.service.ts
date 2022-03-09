@@ -18,9 +18,17 @@ export class TodosService {
         return this.todoRepository.findAll();
      }
 
+     listTodosByTaskId(taskId: number) {
+      return this.todoRepository.findAll();
+   }
+
      finById(id: number) {
         return this.todoRepository.findById(id);
      }
+
+     findAllTodosByTaskId(id: number) {
+      return this.todoRepository.findAllTodosByTaskId(id);
+   }
 
      changeStatus(id: number, status: boolean) {
         return this.todoRepository.changeStatus(id, status["status"]);
