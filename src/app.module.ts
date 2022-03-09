@@ -9,15 +9,19 @@ import { TodosController } from './todos/controllers/todos.controller';
 import { TodosService } from './todos/services/todos.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TaskRepository } from './todos/repositories/taskRepository';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
   imports: [
+    ConfigModule.forRoot({isGlobal: true}),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: process.env.Host,
       port: 3306,
-      username: 'root',
-      database: 'todo',
+      username: process.env.Username,
+      password: process.env.Password,
+      database: process.env.Database,
       entities: [Todo, Task],
       synchronize: true,
       autoLoadEntities: true,
