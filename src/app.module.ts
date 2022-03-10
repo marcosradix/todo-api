@@ -14,14 +14,14 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({isGlobal: true}),
+    ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.Host,
+      host: process.env.HOST,
       port: 3306,
-      username: process.env.Username,
-      password: process.env.Password,
-      database: process.env.Database,
+      username: process.env.USER_NAME,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       entities: [Todo, Task],
       synchronize: true,
       autoLoadEntities: true,
