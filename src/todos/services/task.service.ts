@@ -2,6 +2,7 @@ import { TaskDto } from './../dtos/task-dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TaskRepository } from '../repositories/taskRepository';
+import { CreateTodoInTaskDto } from '../dtos/create-todo-in-task-dto';
 
 @Injectable()
 export class TaskService {

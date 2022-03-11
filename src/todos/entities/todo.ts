@@ -7,7 +7,7 @@ export class Todo {
   @Generated('increment')
   id: number;
 
-  @Column()
+  @Column({default: null})
   name: string;
 
   @Column({default: null})

@@ -14,10 +14,11 @@ export class TodoRepository extends Repository<Todo> {
     }
 
     public async findAllTodosByTaskId(taskId: number): Promise<TodoDto[]> {
-        return getRepository(Todo)
-            .createQueryBuilder("todo")
-            .innerJoin("todo.task", "task")
-            .where("task.id = :id", { id: taskId })
+            return await getRepository(Todo).createQueryBuilder() 
+            .select("todo", "task") 
+            .from(Todo, "todo") 
+            .where("todo.taskId = :id", { id: taskId })
+            .printSql()
             .getMany();
     }
 
@@ -26,6 +27,10 @@ export class TodoRepository extends Repository<Todo> {
 
         Object.assign(newTodo, todoDto);
         return await this.save(newTodo);
+    }
+
+    public async createTodoAll(todoDtoList: TodoDto[]): Promise<TodoDto[]> {
+        return await this.save(todoDtoList);
     }
 
     public async changeStatus(id: number, status: boolean): Promise<Todo> {
