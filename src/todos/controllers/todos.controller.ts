@@ -6,6 +6,7 @@ import { TaskService } from '../services/task.service';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { UpdateStatusDto } from '../dtos/update-status-dto';
 import { CreateTodoInTaskDto } from '../dtos/create-todo-in-task-dto';
+import { TodoUpdateDto } from '../dtos/todo-dto-update';
 
 @ApiTags('todos')
 @Controller('todos')
@@ -27,7 +28,7 @@ export class TodosController {
         description: 'Todo updated successfully',
         type: TodoDto
       })
-    async updateTaskInTodos(@Param("todoId") todoId: number, @Body() todo: TodoDto):Promise<TodoDto> {
+    async updateTaskInTodos(@Param("todoId") todoId: number, @Body() todo: TodoUpdateDto):Promise<TodoDto> {
         return this.todosService.updateTaskInTodos(todoId, todo);
     }
 

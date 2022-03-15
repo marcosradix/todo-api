@@ -5,6 +5,7 @@ import { TodoRepository } from '../repositories/todoRepository';
 import { UpdateStatusDto } from '../dtos/update-status-dto';
 import { Todo } from '../entities/todo';
 import { CreateTodoInTaskDto } from '../dtos/create-todo-in-task-dto';
+import { TodoUpdateDto } from '../dtos/todo-dto-update';
 
 @Injectable()
 export class TodosService {
@@ -17,7 +18,7 @@ export class TodosService {
        return this.todoRepository.createTodo(todo);
     }
 
-    async updateTaskInTodos(todoId: number, todo: TodoDto) {
+    async updateTaskInTodos(todoId: number, todo: TodoUpdateDto) {
       let todoFound: Todo  = await this.todoRepository.findById(todoId).then(data => data);
       todoFound.task = todo.task;
       return this.todoRepository.createTodo(todoFound);
