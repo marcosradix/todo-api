@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, CreateDateColumn, UpdateDateColumn, Generated, ManyToOne } from 'typeorm';
+import { IsNotEmpty } from 'class-validator';
+import { Entity, Column, PrimaryColumn, CreateDateColumn, UpdateDateColumn, Generated, ManyToOne } from 'typeorm';
 import { Task } from './task';
 
 @Entity()
@@ -7,19 +8,21 @@ export class Todo {
   @Generated('increment')
   id: number;
 
-  @Column({default: null})
+  @IsNotEmpty()
+  @Column()
   name: string;
-
-  @Column({default: null})
+  
+  @IsNotEmpty()
+  @Column()
   description: string;
 
   @Column({ default: false })
   isDone: boolean;
 
-  @CreateDateColumn({ name: 'created_at', type: 'datetime', default: null })
+  @CreateDateColumn({ name: 'created_at', type: 'datetime' })
   createdAt: Date;
 
-  @UpdateDateColumn({ name: 'updated_at', type: 'datetime', default: null })
+  @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
   updatedAt: Date;
 
   @ManyToOne(() => Task, task => task.todos)
