@@ -25,7 +25,7 @@ export class Todo {
   @UpdateDateColumn({ name: 'updated_at', type: 'datetime' })
   updatedAt: Date;
 
-  @ManyToOne(() => Task, task => task.todos)
+  @ManyToOne(() => Task, task => task.todos, {onDelete: 'CASCADE'})
   task: Task;
 
 }

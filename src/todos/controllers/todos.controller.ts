@@ -1,5 +1,5 @@
 import { TodosService } from '../services/todos.service';
-import { Body, Controller, Post, Get, Param, Put, Patch } from '@nestjs/common';
+import { Body, Controller, Post, Get, Param, Put, Patch, HttpCode, Delete } from '@nestjs/common';
 import { TodoDto } from '../dtos/todo-dto';
 import { TaskDto } from '../dtos/task-dto';
 import { TaskService } from '../services/task.service';
@@ -96,5 +96,22 @@ export class TodosController {
       })
     async changeStatus(@Param("id") id: number, @Body() updateStatusDto: UpdateStatusDto):Promise<TodoDto> {
         return this.todosService.changeStatus(id, updateStatusDto);
+    }
+    @HttpCode(204)
+    @Delete("/:id")
+    @ApiOkResponse({
+        description: 'Successfully deleted'
+      })
+    async deleteTaskByid(@Param("id") id: number):Promise<void> {
+         return this.taskService.deleteTaskById(id);
+    }
+
+    @HttpCode(204)
+    @Delete("todo/:id")
+    @ApiOkResponse({
+        description: 'Successfully deleted'
+      })
+    async deleteTodoByid(@Param("id") id: number):Promise<void> {
+         return this.todosService.deleteById(id);
     }
 }

@@ -11,6 +11,14 @@ export class TaskRepository extends Repository<Task> {
         return await taskRepository.find({ relations: ["todos"] });
     }
 
+    public async deleteById(id: number): Promise<void> {
+        const taskRepository = getRepository(Task);
+        let taskFound = this.findById(id);
+        if(taskFound){
+            taskRepository.delete(id);
+        }
+    }
+
     public async findAllOnlyTasks(): Promise<Task[]> {
         const taskRepository = getRepository(Task);
         return await taskRepository.find({});

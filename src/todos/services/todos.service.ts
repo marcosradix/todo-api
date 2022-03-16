@@ -43,6 +43,10 @@ export class TodosService {
       return this.todoRepository.findAllTodosByTaskId(id);
    }
 
+   deleteById(id: number) {
+      return this.todoRepository.destroy(id);
+   }
+
      changeStatus(id: number, updateStatusDto: UpdateStatusDto) {
         return this.todoRepository.changeStatus(id, updateStatusDto.status);
      }

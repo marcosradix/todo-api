@@ -26,4 +26,8 @@ export class TaskService {
    finById(id: number) {
       return this.taskRepository.findById(id);
    }
+
+   deleteTaskById(id: number) {
+      return this.taskRepository.deleteById(id);
+   }
 }
