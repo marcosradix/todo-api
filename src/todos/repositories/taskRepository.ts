@@ -11,6 +11,11 @@ export class TaskRepository extends Repository<Task> {
         return await taskRepository.find({ relations: ["todos"] });
     }
 
+    public async findAllOnlyTasks(): Promise<Task[]> {
+        const taskRepository = getRepository(Task);
+        return await taskRepository.find({});
+    }
+
     public async createTask(taskDto: TaskDto): Promise<Task> {
         let newTask: Task = new Task();
 

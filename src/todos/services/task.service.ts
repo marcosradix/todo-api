@@ -19,6 +19,10 @@ export class TaskService {
       return this.taskRepository.findAll();
    }
 
+   findAllOnlyTasks() {
+      return this.taskRepository.findAllOnlyTasks();
+   }
+
    finById(id: number) {
       return this.taskRepository.findById(id);
    }
