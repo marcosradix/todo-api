@@ -15,9 +15,9 @@ export class TodoRepository extends Repository<Todo> {
 
     public async findAllTodosByTaskId(taskId: number): Promise<TodoDto[]> {
             return await getRepository(Todo).createQueryBuilder() 
-            .select("todo", "task") 
-            .from(Todo, "todo") 
-            .where("todo.taskId = :id", { id: taskId })
+            .select("tod", "task") 
+            .from(Todo, "tod") 
+            .where("tod.taskId = :id", { id: taskId })
             .printSql()
             .getMany();
     }
