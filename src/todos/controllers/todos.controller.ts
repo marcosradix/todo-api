@@ -67,7 +67,7 @@ export class TodosController {
         isArray: true
       })
     async listTasks():Promise<TaskDto[]> {
-        return this.taskService.findAllOnlyTasks();
+        return this.taskService.listTasks();
     }
 
     @Get("/:id")

@@ -6,7 +6,7 @@ import { TaskDto } from '../dtos/task-dto';
 @EntityRepository(Task)
 export class TaskRepository extends Repository<Task> {
 
-    public async findAll(): Promise<Task[]> {
+    public async findAll(): Promise<TaskDto[]> {
         const taskRepository = getRepository(Task);
         return await taskRepository.find({ relations: ["todos"] });
     }

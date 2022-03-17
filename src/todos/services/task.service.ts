@@ -2,7 +2,6 @@ import { TaskDto } from './../dtos/task-dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { TaskRepository } from '../repositories/taskRepository';
-import { CreateTodoInTaskDto } from '../dtos/create-todo-in-task-dto';
 
 @Injectable()
 export class TaskService {
@@ -16,7 +15,14 @@ export class TaskService {
    }
 
    listTasks() {
-      return this.taskRepository.findAll();
+      let tasks = this.taskRepository.findAll();
+         tasks.then(data => data.map(d =>{
+            if(d.todos.filter(f => f.isDone == true).length == d.todos.length && d.todos.filter(f => f.isDone == true).length != 0){
+             return d.isDone = true;
+            }
+            return d.isDone = false;
+         }));
+      return tasks;
    }
 
    findAllOnlyTasks() {

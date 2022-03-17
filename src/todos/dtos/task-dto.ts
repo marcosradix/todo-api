@@ -15,4 +15,5 @@ export class TaskDto {
   updatedAt: Date;
   @ApiProperty()
   todos: TodoDto[];
+  isDone?: boolean;
 }
